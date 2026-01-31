@@ -7,11 +7,13 @@ import TourRoutes from "./routes/tourRoute.js"
 import UserRoutes from "./routes/userRoute.js"
 import { connectDB } from "./db.js"
 const app = express()
-const allowedOrigin = process.env.FRONTEND_URI.split(",")
+const allowedOrigin = process.env.FRONTEND_URI.split(",").map(o => o.trim())
+console.log("back: ", allowedOrigin)
 app.use(cors({
     origin: allowedOrigin,
     credentials: true
 }))
+app.set("trust proxy", 1);
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
