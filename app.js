@@ -7,8 +7,9 @@ import TourRoutes from "./routes/tourRoute.js"
 import UserRoutes from "./routes/userRoute.js"
 import { connectDB } from "./db.js"
 const app = express()
+const allowedOrigin = process.env.FRONTEND_URI.split(",")
 app.use(cors({
-    origin: process.env.FRONTEND_URI,
+    origin: allowedOrigin,
     credentials: true
 }))
 app.use(cookieParser())
