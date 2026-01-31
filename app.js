@@ -20,4 +20,12 @@ app.use(express.urlencoded({ extended: true }))
 connectDB()
 app.use("/api/tours", TourRoutes)
 app.use("/users", UserRoutes)
+app.use((err, req, res, next) => {
+    const { message = "Not found", status = 500 } = err
+    res.status(status).json({ message })
+})
+app.use((req, res) => {
+    res.status(404).json({ message: "Not Found" })
+})
+
 export default app
