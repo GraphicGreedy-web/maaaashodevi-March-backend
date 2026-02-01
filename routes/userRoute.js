@@ -1,20 +1,26 @@
 import express from "express"
 const router = express.Router()
 import { contact } from "../models/Model.js"
-import axios from "axios"
-const createContact = async () => {
-    console.log("body: ", body)
+const createContact = async (req, res) => {
+    console.log("body: ", req.body)
     try {
         const con = await contact.create(req.body);
-        axios.post(process.env.GSHEET_WEBHOOK_URL, {
-            name: con.name,
-            email: con.email,
-            phone: con.phone,
-            message: con.message,
-        }).catch(() => { });
+        console.log("contact created: ", con.toObject())
+        console.log("contact created:", con._id);
 
-        res.status(201).json({ success: true });
+        // axios.post(process.env.GSHEET_WEBHOOK_URL, {
+        //     name: con.name,
+        //     email: con.email,
+        //     phone: con.phone,
+        //     message: con.message,
+        //     subject: con.subject,
+        //     tour: con.tour,
+        // }).catch(err => {
+        //     console.error("Sheet logging failed:", err.message);
+        // });
+        return res.status(201).json({ success: true });
     } catch (err) {
+        console.log("backe error: ", err?.message);
         res.status(500).json({ success: false });
     }
 }
