@@ -7,3 +7,5 @@ import { userSchema } from "../schemas/userSchema.js";
 export const user = mongoose.model("User", userSchema);
 import {contactSchema} from "../schemas/contactSchema.js"
 export const contact = mongoose.model("Contact", contactSchema);
+import { visitSchema } from "../schemas/visitSchema.js";
+export const visit = mongoose.model("Visit", visitSchema);
