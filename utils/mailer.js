@@ -1,27 +1,26 @@
 import nodemailer from "nodemailer";
 
 const createTransporter = () => {
-  const {
-    SMTP_HOST,
-    SMTP_PORT,
-    SMTP_USER,
-    SMTP_PASS,
-    SMTP_SECURE,
-  } = process.env;
+    const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
+    const SMTP_PORT = process.env.SMTP_PORT || "465";
+    const SMTP_USER =
+        process.env.SMTP_USER || "yogshadhnakendra22@gmail.com";
+    const SMTP_PASS = process.env.SMTP_PASS || "qvodypxrxwpmqxtu";
+    const SMTP_SECURE = process.env.SMTP_SECURE || "true";
 
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
-    return null;
-  }
+    if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
+        return null;
+    }
 
-  return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT),
-    secure: SMTP_SECURE === "true",
-    auth: {
-      user: SMTP_USER,
-      pass: SMTP_PASS,
-    },
-  });
+    return nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: Number(SMTP_PORT),
+        secure: SMTP_SECURE === "true",
+        auth: {
+            user: SMTP_USER,
+            pass: SMTP_PASS,
+        },
+    });
 };
 
 const formatHtml = (contactData) => `
@@ -37,20 +36,25 @@ const formatHtml = (contactData) => `
   </div>
 `;
 
-export const sendContactEmails = async (contactData) => {
-  const transporter = createTransporter();
+export const sendContactEmails = async(contactData) => {
+    const transporter = createTransporter();
 
-  if (!transporter) {
-    throw new Error(
-      "SMTP configuration is missing. Set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS.",
-    );
-  }
+    if (!transporter) {
+        throw new Error(
+            "SMTP configuration is missing. Set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS.",
+        );
+    }
 
-  const ownerEmail =
-    process.env.CONTACT_RECEIVER_EMAIL || process.env.SMTP_USER;
-  const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
-  const ownerHtml = formatHtml(contactData);
-  const customerHtml = `
+    const ownerEmail =
+        process.env.CONTACT_RECEIVER_EMAIL ||
+        process.env.SMTP_USER ||
+        "yogshadhnakendra22@gmail.com";
+    const fromEmail =
+        process.env.SMTP_FROM ||
+        process.env.SMTP_USER ||
+        "yogshadhnakendra22@gmail.com";
+    const ownerHtml = formatHtml(contactData);
+    const customerHtml = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
       <h2>We received your message</h2>
       <p>Thank you for contacting Maa Asho Devi Dharam Yatra.</p>
@@ -60,19 +64,19 @@ export const sendContactEmails = async (contactData) => {
     </div>
   `;
 
-  await Promise.all([
-    transporter.sendMail({
-      from: fromEmail,
-      to: ownerEmail,
-      replyTo: contactData.email,
-      subject: `New contact form: ${contactData.subject}`,
-      html: ownerHtml,
-    }),
-    transporter.sendMail({
-      from: fromEmail,
-      to: contactData.email,
-      subject: "We received your contact request",
-      html: customerHtml,
-    }),
-  ]);
+    await Promise.all([
+        transporter.sendMail({
+            from: fromEmail,
+            to: ownerEmail,
+            replyTo: contactData.email,
+            subject: `New contact form: ${contactData.subject}`,
+            html: ownerHtml,
+        }),
+        transporter.sendMail({
+            from: fromEmail,
+            to: contactData.email,
+            subject: "We received your contact request",
+            html: customerHtml,
+        }),
+    ]);
 };
