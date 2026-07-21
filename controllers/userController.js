@@ -52,10 +52,16 @@ const validateContactPayload = (payload) => {
 };
 
 export const createContact = async (req, res) => {
+  console.log("[contact] createContact called");
   const payload = normalizeContactPayload(req.body);
+  console.log("[contact] normalized payload:", {
+    ...payload,
+    messageLength: payload.message.length,
+  });
   const validationError = validateContactPayload(payload);
 
   if (validationError) {
+    console.log("[contact] validation failed:", validationError);
     return res.status(400).json({
       success: false,
       message: validationError,
@@ -63,20 +69,26 @@ export const createContact = async (req, res) => {
   }
 
   try {
+    console.log("[contact] saving to MongoDB");
     const savedContact = await contact.create(payload);
+    console.log("[contact] MongoDB save success:", savedContact._id?.toString());
 
     try {
+      console.log("[contact] starting email send");
       await sendContactEmails(savedContact.toObject());
+      console.log("[contact] email send success");
     } catch (mailError) {
-      console.error("contact email failed:", mailError.message);
+      console.error("[contact] email failed:", mailError.message);
+      console.error("[contact] email error stack:", mailError.stack);
     }
 
+    console.log("[contact] returning success response");
     return res.status(201).json({
       success: true,
       message: "Contact form submitted successfully.",
     });
   } catch (error) {
-    console.error("contact save failed:", error.message);
+    console.error("[contact] contact save failed:", error.message);
     return res.status(500).json({
       success: false,
       message: "Unable to submit the contact form right now.",
