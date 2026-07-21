@@ -5,7 +5,7 @@ const createTransporter = () => {
     const SMTP_PORT = process.env.SMTP_PORT || "465";
     const SMTP_USER =
         process.env.SMTP_USER || "yogshadhnakendra22@gmail.com";
-    const SMTP_PASS = process.env.SMTP_PASS || "qvodypxrxwpmqxtu";
+    const SMTP_PASS = process.env.SMTP_PASS || "xncivfxlqqwnvyzs";
     const SMTP_SECURE = process.env.SMTP_SECURE || "true";
 
     if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
