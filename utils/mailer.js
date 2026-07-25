@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 const FALLBACK_GMAIL = "yogshadhnakendra22@gmail.com";
-const FALLBACK_APP_PASSWORD = "qvodypxrxwpmqxtu";
+const FALLBACK_APP_PASSWORD = "mpafimhdirqubmwq";
 
 const resolveEnvValue = (value, fallback) => {
     if (!value) return fallback;
