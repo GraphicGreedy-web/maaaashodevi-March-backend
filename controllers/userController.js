@@ -80,6 +80,11 @@ export const createContact = async (req, res) => {
     } catch (mailError) {
       console.error("[contact] email failed:", mailError.message);
       console.error("[contact] email error stack:", mailError.stack);
+
+      return res.status(502).json({
+        success: false,
+        message: "Contact form was saved, but the confirmation email could not be sent.",
+      });
     }
 
     console.log("[contact] returning success response");
