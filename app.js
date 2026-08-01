@@ -8,6 +8,7 @@ import {syncAllContactsToSheet} from "./cron.js"
 import UserRoutes from "./routes/userRoute.js"
 import VisitRoutes from "./routes/visitRoute.js"
 import ReviewRoutes from "./routes/reviewRoute.js"
+import UploadRoutes from "./routes/uploadRoute.js"
 import { connectDB } from "./db.js"
 import cron from "node-cron";
 const app = express()
@@ -27,6 +28,7 @@ app.use("/api/tours", TourRoutes)
 app.use("/api/contacts", UserRoutes)
 app.use("/api/visits", VisitRoutes)
 app.use("/api/reviews", ReviewRoutes)
+app.use("/api/uploads", UploadRoutes)
 app.use((err, req, res, next) => {
     const { message = "Not found", status = 500 } = err
     res.status(status).json({ message })
