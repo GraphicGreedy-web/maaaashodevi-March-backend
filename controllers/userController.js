@@ -1,5 +1,8 @@
 import { contact } from "../models/Model.js";
-import { sendContactEmails } from "../utils/mailer.js";
+import {
+  enqueueContactEmail,
+  getContactEmailStatus,
+} from "../services/contactEmailQueue.js";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[0-9+\-\s()]{7,20}$/;
@@ -72,31 +75,51 @@ export const createContact = async (req, res) => {
     console.log("[contact] saving to MongoDB");
     const savedContact = await contact.create(payload);
     console.log("[contact] MongoDB save success:", savedContact._id?.toString());
-
-    try {
-      console.log("[contact] starting email send");
-      await sendContactEmails(savedContact.toObject());
-      console.log("[contact] email send success");
-    } catch (mailError) {
-      console.error("[contact] email failed:", mailError.message);
-      console.error("[contact] email error stack:", mailError.stack);
-
-      return res.status(502).json({
-        success: false,
-        message: "Contact form was saved, but the confirmation email could not be sent.",
-      });
-    }
+    console.log("[contact] queueing email send");
+    await enqueueContactEmail(savedContact._id);
 
     console.log("[contact] returning success response");
     return res.status(201).json({
       success: true,
-      message: "Contact form submitted successfully.",
+      message: "Contact form submitted successfully. Email delivery is being processed.",
+      contactId: savedContact._id,
+      emailStatus: "queued",
     });
   } catch (error) {
     console.error("[contact] contact save failed:", error.message);
     return res.status(500).json({
       success: false,
       message: "Unable to submit the contact form right now.",
+    });
+  }
+};
+
+export const getContactStatus = async (req, res) => {
+  try {
+    const status = await getContactEmailStatus(req.params.id);
+
+    if (!status) {
+      return res.status(404).json({
+        success: false,
+        message: "Contact request not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      contactId: status._id,
+      emailStatus: status.emailStatus,
+      emailAttempts: status.emailAttempts,
+      emailLastError: status.emailLastError,
+      emailLastAttemptAt: status.emailLastAttemptAt,
+      emailNextRetryAt: status.emailNextRetryAt,
+      emailSentAt: status.emailSentAt,
+    });
+  } catch (error) {
+    console.error("[contact] status lookup failed:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Unable to fetch contact status right now.",
     });
   }
 };

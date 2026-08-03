@@ -10,6 +10,7 @@ import VisitRoutes from "./routes/visitRoute.js"
 import ReviewRoutes from "./routes/reviewRoute.js"
 import UploadRoutes from "./routes/uploadRoute.js"
 import { connectDB } from "./db.js"
+import { startContactEmailQueueWorker } from "./services/contactEmailQueue.js";
 import cron from "node-cron";
 const app = express()
 const allowedOrigin = process.env.FRONTEND_URI.split(",").map(o => o.trim())
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 connectDB()
+startContactEmailQueueWorker()
 // cron.schedule("*/10 * * * * *", syncAllContactsToSheet);
 app.use("/api/tours", TourRoutes)
 app.use("/api/contacts", UserRoutes)

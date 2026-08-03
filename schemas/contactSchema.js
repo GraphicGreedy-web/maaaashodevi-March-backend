@@ -37,5 +37,31 @@ export const contactSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    emailStatus: {
+        type: String,
+        enum: ["queued", "sending", "sent", "retrying", "failed"],
+        default: "queued",
+    },
+    emailAttempts: {
+        type: Number,
+        default: 0,
+    },
+    emailLastError: {
+        type: String,
+        default: "",
+        trim: true,
+    },
+    emailLastAttemptAt: {
+        type: Date,
+        default: null,
+    },
+    emailNextRetryAt: {
+        type: Date,
+        default: Date.now,
+    },
+    emailSentAt: {
+        type: Date,
+        default: null,
+    },
     date: { type: Date, default: Date.now }
 })

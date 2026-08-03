@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 
 const FALLBACK_GMAIL = "yogshadhnakendra22@gmail.com";
 const FALLBACK_APP_PASSWORD = "mpafimhdirqubmwq";
+let cachedTransporter = null;
 
 const resolveEnvValue = (value, fallback) => {
     if (!value) return fallback;
@@ -36,7 +37,7 @@ const createTransporter = () => {
         return null;
     }
 
-    const transporter = nodemailer.createTransport({
+    return nodemailer.createTransport({
         host: SMTP_HOST,
         port: Number(SMTP_PORT),
         secure: SMTP_SECURE === "true",
@@ -48,9 +49,16 @@ const createTransporter = () => {
         greetingTimeout: 15000,
         socketTimeout: 20000,
     });
+};
 
-    console.log("[mailer] transporter created");
-    return transporter;
+const getTransporter = () => {
+    if (cachedTransporter) {
+        return cachedTransporter;
+    }
+
+    cachedTransporter = createTransporter();
+    console.log("[mailer] transporter ready");
+    return cachedTransporter;
 };
 
 const formatHtml = (contactData) => `
@@ -68,7 +76,7 @@ const formatHtml = (contactData) => `
 
 export const sendContactEmails = async(contactData) => {
     console.log("[mailer] sendContactEmails start");
-    const transporter = createTransporter();
+    const transporter = getTransporter();
 
     if (!transporter) {
         throw new Error(
@@ -99,27 +107,38 @@ export const sendContactEmails = async(contactData) => {
     </div>
   `;
 
-    console.log("[mailer] verifying transporter");
-    await transporter.verify();
-    console.log("[mailer] transporter verified");
+    console.log("[mailer] sending owner and customer emails");
+    const [ownerResult, customerResult] = await Promise.all([
+        transporter.sendMail({
+            from: fromEmail,
+            to: ownerEmail,
+            replyTo: contactData.email,
+            subject: `New contact form: ${contactData.subject}`,
+            html: ownerHtml,
+        }),
+        transporter.sendMail({
+            from: fromEmail,
+            to: contactData.email,
+            subject: "We received your contact request",
+            html: customerHtml,
+        }),
+    ]);
 
-    console.log("[mailer] sending owner email");
-    const ownerResult = await transporter.sendMail({
-        from: fromEmail,
-        to: ownerEmail,
-        replyTo: contactData.email,
-        subject: `New contact form: ${contactData.subject}`,
-        html: ownerHtml,
-    });
     console.log("[mailer] owner email sent:", ownerResult.messageId);
-
-    console.log("[mailer] sending customer email");
-    const customerResult = await transporter.sendMail({
-        from: fromEmail,
-        to: contactData.email,
-        subject: "We received your contact request",
-        html: customerHtml,
-    });
     console.log("[mailer] customer email sent:", customerResult.messageId);
     console.log("[mailer] sendContactEmails completed");
+
+    return {
+        ownerMessageId: ownerResult.messageId,
+        customerMessageId: customerResult.messageId,
+    };
+};
+
+export const queueContactEmails = (contactData) => {
+    setTimeout(() => {
+        sendContactEmails(contactData).catch((error) => {
+            console.error("[mailer] queued email failed:", error.message);
+            console.error("[mailer] queued email stack:", error.stack);
+        });
+    }, 0);
 };
