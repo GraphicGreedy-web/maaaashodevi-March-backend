@@ -1,10 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
+import SEO from "../components/SEO";
 
 const TermsOfService: React.FC = () => {
   return (
     <PageTransition>
+      <SEO
+        title="Terms of Service | Maa Asho Devi Dharam Yatra"
+        description="Review the booking, payment, cancellation and usage terms for Maa Asho Devi Dharam Yatra pilgrimage services."
+        path="/terms-of-service"
+        keywords={["terms of service", "booking terms", "cancellation policy"]}
+      />
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <motion.div

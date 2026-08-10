@@ -11,7 +11,9 @@ import {
   Heart,
 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
-import { blogPosts, BlogPost as BlogPostType } from '../data/blogPosts';
+import { blogPosts, type BlogPostType } from '../data/blogPosts';
+import SEO from '../components/SEO';
+import { getGuideForTourTitle } from '../data/seoLinks';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -52,23 +54,100 @@ const BlogPost: React.FC = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-        <p className="text-gray-600 mb-6">
-          The blog post you're looking for doesn't exist or has been removed.
-        </p>
-        <Link
-          to="/blog"
-          className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-full transition-all duration-300"
-        >
-          Return to Blog
-        </Link>
-      </div>
+      <>
+        <SEO
+          title="Post Not Found | Maa Asho Devi Dharam Yatra"
+          description="The requested blog article could not be found."
+          path={slug ? `/blog/${slug}` : '/blog'}
+          robots="noindex, nofollow"
+        />
+        <div className="min-h-screen flex flex-col items-center justify-center p-4">
+          <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
+          <p className="text-gray-600 mb-6">
+            The blog post you're looking for doesn't exist or has been removed.
+          </p>
+          <Link
+            to="/blog"
+            className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-full transition-all duration-300"
+          >
+            Return to Blog
+          </Link>
+        </div>
+      </>
     );
   }
 
+  const articleSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.metaDescription || post.excerpt,
+      image: [post.image],
+      author: {
+        '@type': 'Person',
+        name: post.author,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Maa Asho Devi Dharam Yatra',
+        url: 'https://maaaashodevidharmayatra.in',
+      },
+      datePublished: new Date(post.date).toISOString(),
+      mainEntityOfPage: `https://maaaashodevidharmayatra.in/blog/${post.slug}`,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://maaaashodevidharmayatra.in/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://maaaashodevidharmayatra.in/blog',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: `https://maaaashodevidharmayatra.in/blog/${post.slug}`,
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: post.title,
+      url: `https://maaaashodevidharmayatra.in/blog/${post.slug}`,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'Maa Asho Devi Dharam Yatra',
+        url: 'https://maaaashodevidharmayatra.in',
+      },
+      about: post.keywords?.slice(0, 5),
+    },
+  ];
+  const relatedPackageGuide = getGuideForTourTitle(post.title);
+
   return (
     <PageTransition>
+      <SEO
+        title={
+          post.metaTitle || `${post.title} | Maa Asho Devi Dharam Yatra Blog`
+        }
+        description={post.metaDescription || post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+        keywords={post.keywords}
+        schema={articleSchema}
+      />
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           {/* Back Button */}
@@ -179,6 +258,39 @@ const BlogPost: React.FC = () => {
                     Travel
                   </span>
                 </div>
+
+                <div className="mt-10 rounded-2xl bg-primary/5 p-6">
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Turn This Guide Into a Real Journey
+                  </h3>
+                  <p className="mt-2 text-gray-600">
+                    After reading the planning guide, compare live departures and
+                    ask for a family-friendly pilgrimage plan from Bhopal.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                    <Link
+                      to="/upcoming-plans"
+                      className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-medium text-white transition-all duration-300 hover:bg-primary/90"
+                    >
+                      View Upcoming Packages
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-3 font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-white"
+                    >
+                      Talk to Our Team
+                    </Link>
+                  </div>
+                  {relatedPackageGuide ? (
+                    <p className="mt-4 text-sm text-gray-600">
+                      Related destination guide:
+                      {' '}
+                      <Link to={relatedPackageGuide.path} className="font-medium text-primary hover:underline">
+                        {relatedPackageGuide.title}
+                      </Link>
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </div>
 
@@ -214,6 +326,54 @@ const BlogPost: React.FC = () => {
                   ) : (
                     <p className="text-gray-600">No related articles found.</p>
                   )}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 className="text-xl font-bold mb-4">Popular Yatra Guides</h3>
+                <div className="space-y-3 text-sm">
+                  <Link
+                    to="/blog/tour-operator-in-bhopal-religious-tours"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Tour Operator in Bhopal for Religious Tours
+                  </Link>
+                  <Link
+                    to="/blog/kedarnath-tour-package-from-bhopal"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Kedarnath Tour Package from Bhopal
+                  </Link>
+                  <Link
+                    to="/blog/uttarakhand-tour-package-from-bhopal"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Uttarakhand Tour Package from Bhopal
+                  </Link>
+                  <Link
+                    to="/blog/nepal-tour-package-from-bhopal"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Nepal Tour Package from Bhopal
+                  </Link>
+                  <Link
+                    to="/blog/char-dham-yatra-package-from-bhopal"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Char Dham Yatra Package from Bhopal
+                  </Link>
+                  <Link
+                    to="/upcoming-plans"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Upcoming Religious Tour Packages from Bhopal
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="block text-gray-700 transition-colors hover:text-primary"
+                  >
+                    Contact Our Bhopal Tour Operator
+                  </Link>
                 </div>
               </div>
 

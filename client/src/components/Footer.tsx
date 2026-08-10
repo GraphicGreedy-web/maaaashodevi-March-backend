@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Phone, MapPin, Mail, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { packagePages } from '../data/packagePages';
 
 const Footer: React.FC = () => {
   const fadeInUp = {
@@ -85,21 +86,13 @@ const Footer: React.FC = () => {
           >
             <h3 className="text-xl font-bold mb-4">Popular Destinations</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/destinations/vrindavan" className="text-gray-400 hover:text-primary transition-colors">Vrindavan</Link>
-              </li>
-              <li>
-                <Link to="/destinations/ujjain" className="text-gray-400 hover:text-primary transition-colors">Ujjain</Link>
-              </li>
-              <li>
-                <Link to="/destinations/uttarakhand-char-dham" className="text-gray-400 hover:text-primary transition-colors">Uttarakhand Char Dham <i>Yatra</i></Link>
-              </li>
-              <li>
-                <Link to="/destinations/dakshin-yatra" className="text-gray-400 hover:text-primary transition-colors">Dakshin <i>Yatra</i></Link>
-              </li>
-              <li>
-                <Link to="/destinations/nepal" className="text-gray-400 hover:text-primary transition-colors">Nepal</Link>
-              </li>
+              {packagePages.slice(0, 5).map((pkg) => (
+                <li key={pkg.slug}>
+                  <Link to={`/${pkg.slug}`} className="text-gray-400 hover:text-primary transition-colors">
+                    {pkg.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </motion.div>
 
@@ -151,6 +144,11 @@ const Footer: React.FC = () => {
                 <li>
                   <Link to="/contact" className="text-gray-500 text-sm hover:text-primary transition-colors">
                     Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/sitemap" className="text-gray-500 text-sm hover:text-primary transition-colors">
+                    HTML Sitemap
                   </Link>
                 </li>
               </ul>

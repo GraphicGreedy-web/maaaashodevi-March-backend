@@ -1,10 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
+import SEO from "../components/SEO";
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <PageTransition>
+      <SEO
+        title="Privacy Policy | Maa Asho Devi Dharam Yatra"
+        description="Read the privacy policy for Maa Asho Devi Dharam Yatra to understand how booking and contact information is collected, used and protected."
+        path="/privacy-policy"
+        keywords={["privacy policy", "data protection", "contact information policy"]}
+      />
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <motion.div

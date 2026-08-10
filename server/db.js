@@ -113,6 +113,9 @@ const upcomingTrips = [
 export const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log("Mongo Host:", mongoose.connection.host);
+console.log("Mongo DB Name:", mongoose.connection.name);
+
         // await tour.deleteMany({})
         // for (const trip of upcomingTrips) {
         //     const newTour = await tour.create({

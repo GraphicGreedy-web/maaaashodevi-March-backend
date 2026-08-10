@@ -5,3 +5,9 @@ import { tourSchema } from "../schemas/tourSchema.js";
 export const tour = mongoose.model("Tour", tourSchema);
 import { userSchema } from "../schemas/userSchema.js";
 export const user = mongoose.model("User", userSchema);
+import {contactSchema} from "../schemas/contactSchema.js"
+export const contact = mongoose.model("Contact", contactSchema);
+import { visitSchema } from "../schemas/visitSchema.js";
+export const visit = mongoose.model("Visit", visitSchema);
+import { reviewSchema } from "../schemas/reviewSchema.js";
+export const review = mongoose.model("Review", reviewSchema);

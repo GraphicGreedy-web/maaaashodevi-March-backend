@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
+import SEO from "../components/SEO";
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -236,6 +237,21 @@ const Gallery: React.FC = () => {
 
   return (
     <PageTransition>
+      <SEO
+        title="Maa Aasho Devi Tours Gallery | Religious Tours from Bhopal"
+        description="Browse Maa Aasho Devi Tours gallery photos from Char Dham, Kedarnath, Kainchi Dham and other religious tour packages from Bhopal."
+        path="/gallery"
+        keywords={[
+          "maa aasho devi tours",
+          "maa aasho devi dharma yatra",
+          "maa aasho devi bhopal",
+          "yatra gallery",
+          "pilgrimage photos",
+          "religious tour package bhopal",
+          "kedarnath journey images",
+          "spiritual travel gallery",
+        ]}
+      />
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">

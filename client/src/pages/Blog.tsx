@@ -5,6 +5,8 @@ import { Calendar, User, Clock, ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import AnimatedCard from '../components/AnimatedCard';
 import { blogPosts } from '../data/blogPosts';
+import SEO from '../components/SEO';
+import { planningGuides } from '../data/seoLinks';
 
 const Blog: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -29,6 +31,67 @@ const Blog: React.FC = () => {
 
   return (
     <PageTransition>
+      <SEO
+        title="Maa Aasho Devi Tours Blog | Travel Agency Bhopal Guides"
+        description="Explore Char Dham Yatra Bhopal, Kedarnath tour package Bhopal and pilgrimage guides from Maa Aasho Devi Tours, a travel agency in Bhopal."
+        path="/blog"
+        type="blog"
+        keywords={[
+          'maa aasho devi tours',
+          'maa aasho devi dharma yatra',
+          'maa aasho devi bhopal',
+          'tour agency bhopal',
+          'religious tour packages from bhopal',
+          'religious tour package bhopal',
+          'travel agency bhopal',
+          'char dham yatra bhopal',
+          'spiritual travel blog',
+          'char dham yatra package from bhopal',
+          'kedarnath tour package bhopal',
+          'pilgrimage travel tips',
+          'char dham guide',
+          'kedarnath travel guide',
+        ]}
+        schema={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'Blog',
+              name: 'Maa Aasho Devi Tours Blog',
+              url: 'https://maaaashodevidharmayatra.in/blog',
+              description:
+                'Dharma yatra guides, destination articles and travel tips from a tour agency in Madhya Pradesh for spiritual journeys across India.',
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://maaaashodevidharmayatra.in/',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Blog',
+                  item: 'https://maaaashodevidharmayatra.in/blog',
+                },
+              ],
+            },
+            {
+              '@type': 'ItemList',
+              name: 'Pilgrimage planning articles',
+              itemListElement: blogPosts.slice(0, 10).map((post, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: post.title,
+                url: `https://maaaashodevidharmayatra.in/blog/${post.slug}`,
+              })),
+            },
+          ],
+        }}
+      />
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -87,7 +150,7 @@ const Blog: React.FC = () => {
                   <div className="relative h-64 lg:h-auto">
                     <img 
                       src={blogPosts[0].image} 
-                      alt="Featured Post" 
+                      alt={blogPosts[0].title} 
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -165,6 +228,45 @@ const Blog: React.FC = () => {
                 </div>
               </AnimatedCard>
             ))}
+          </div>
+
+          <div className="mt-16 rounded-3xl bg-white p-8 shadow-sm">
+            <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h3 className="text-2xl font-bold">Ready to Match a Guide With a Package?</h3>
+                <p className="max-w-2xl text-gray-600">
+                  Use these destination articles to compare routes, then jump to
+                  live departures and contact support for the right pilgrimage plan.
+                </p>
+              </div>
+              <Link
+                to="/upcoming-plans"
+                className="inline-flex items-center text-primary font-medium hover:underline"
+              >
+                View upcoming packages <ArrowRight size={16} className="ml-1" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {planningGuides.map((guide) => (
+                <div
+                  key={guide.path}
+                  className="rounded-2xl border border-gray-200 bg-gray-50 p-5"
+                >
+                  <Link to={guide.path} className="font-semibold text-gray-900 hover:text-primary">
+                    {guide.title}
+                  </Link>
+                  <p className="mt-2 text-sm text-gray-600">{guide.description}</p>
+                  <div className="mt-4 flex items-center gap-4 text-sm">
+                    <Link to={guide.path} className="text-primary hover:underline">
+                      Read guide
+                    </Link>
+                    <Link to="/upcoming-plans" className="text-primary hover:underline">
+                      See packages
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Call to Action */}

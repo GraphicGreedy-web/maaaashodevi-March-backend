@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +30,17 @@ const Navbar: React.FC = () => {
     { name: 'Upcoming Plans', path: '/upcoming-plans' },
     { name: 'Contact', path: '/contact' },
   ];
+
+  const openRatingForm = () => {
+    setIsOpen(false);
+
+    if (location.pathname === '/') {
+      window.dispatchEvent(new CustomEvent('open-rating-form'));
+      return;
+    }
+
+    navigate('/#rating-form');
+  };
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -79,6 +91,13 @@ const Navbar: React.FC = () => {
                 )}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={openRatingForm}
+              className="relative font-medium text-gray-700 transition-colors duration-300 hover:text-primary"
+            >
+              Rating
+            </button>
           </div>
 
           {/* Mobile Navigation Button */}
@@ -115,6 +134,13 @@ const Navbar: React.FC = () => {
                     {link.name}
                   </Link>
                 ))}
+                <button
+                  type="button"
+                  onClick={openRatingForm}
+                  className="px-6 py-3 text-left text-gray-700 hover:bg-gray-100"
+                >
+                  Rating
+                </button>
               </div>
             </motion.div>
           )}
