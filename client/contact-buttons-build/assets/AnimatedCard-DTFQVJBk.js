@@ -1,0 +1,1 @@
+import{j as e,m as n}from"./index-Cb_Uc1XL.js";const s=({children:i,delay:t=0,className:o=""})=>e.jsx(n.div,{initial:{opacity:0,y:50},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.5,delay:t,type:"spring",stiffness:100},whileHover:{y:-10,transition:{duration:.3}},className:`bg-white rounded-xl shadow-lg overflow-hidden ${o}`,children:i});export{s as A};

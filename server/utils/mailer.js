@@ -1,7 +1,5 @@
 import nodemailer from "nodemailer";
 
-const FALLBACK_GMAIL = "yogshadhnakendra22@gmail.com";
-const FALLBACK_APP_PASSWORD = "mpafimhdirqubmwq";
 let cachedTransporter = null;
 
 const resolveEnvValue = (value, fallback) => {
@@ -18,11 +16,8 @@ const resolveEnvValue = (value, fallback) => {
 const createTransporter = () => {
     const SMTP_HOST = resolveEnvValue(process.env.SMTP_HOST, "smtp.gmail.com");
     const SMTP_PORT = resolveEnvValue(process.env.SMTP_PORT, "465");
-    const SMTP_USER = resolveEnvValue(process.env.SMTP_USER, FALLBACK_GMAIL);
-    const SMTP_PASS = resolveEnvValue(
-        process.env.SMTP_PASS,
-        FALLBACK_APP_PASSWORD,
-    );
+    const SMTP_USER = resolveEnvValue(process.env.SMTP_USER, "");
+    const SMTP_PASS = resolveEnvValue(process.env.SMTP_PASS, "");
     const SMTP_SECURE = resolveEnvValue(process.env.SMTP_SECURE, "true");
 
     console.log("[mailer] createTransporter called");
@@ -86,12 +81,10 @@ export const sendContactEmails = async(contactData) => {
 
     const ownerEmail =
         resolveEnvValue(process.env.CONTACT_RECEIVER_EMAIL, "") ||
-        resolveEnvValue(process.env.SMTP_USER, FALLBACK_GMAIL) ||
-        FALLBACK_GMAIL;
+        resolveEnvValue(process.env.SMTP_USER, "");
     const fromEmail =
         resolveEnvValue(process.env.SMTP_FROM, "") ||
-        resolveEnvValue(process.env.SMTP_USER, FALLBACK_GMAIL) ||
-        FALLBACK_GMAIL;
+        resolveEnvValue(process.env.SMTP_USER, "");
     console.log("[mailer] ownerEmail:", ownerEmail);
     console.log("[mailer] fromEmail:", fromEmail);
     console.log("[mailer] customerEmail:", contactData.email);

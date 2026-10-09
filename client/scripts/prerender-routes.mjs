@@ -11,10 +11,15 @@ const previewHost = "127.0.0.1";
 const baseUrl = `http://${previewHost}:${previewPort}`;
 
 const browserCandidates = [
+  process.env.BROWSER_PATH,
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-];
+  "/usr/bin/google-chrome",
+  "/usr/bin/google-chrome-stable",
+  "/usr/bin/chromium",
+  "/usr/bin/chromium-browser",
+].filter(Boolean);
 
 const wait = (ms) => new Promise((resolvePromise) => setTimeout(resolvePromise, ms));
 
@@ -51,12 +56,7 @@ const parseRoutesFromSitemap = () => {
 
 const resolveBrowserPath = () => {
   const browserPath = browserCandidates.find((candidate) => existsSync(candidate));
-
-  if (!browserPath) {
-    throw new Error("Could not find a Chromium browser for prerendering.");
-  }
-
-  return browserPath;
+  return browserPath || null;
 };
 
 const toDistFilePath = (routePath) => {
@@ -111,16 +111,34 @@ const prerenderRoute = (browserPath, routePath) =>
   });
 
 const run = async () => {
+  if (process.env.SKIP_PRERENDER === "1") {
+    console.log("[prerender] Skipping route prerender because SKIP_PRERENDER=1.");
+    return;
+  }
+
+  if (!existsSync(sitemapPath)) {
+    console.warn("[prerender] Skipping route prerender because sitemap.xml was not generated.");
+    return;
+  }
+
   const routes = parseRoutesFromSitemap();
   const browserPath = resolveBrowserPath();
+  const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+
+  if (!browserPath) {
+    console.warn("[prerender] No Chromium browser found. Skipping route prerender.");
+    return;
+  }
+
   const previewProcess = spawn(
-    "powershell.exe",
-    [
-      "-NoProfile",
-      "-Command",
-      `& 'C:\\Program Files\\nodejs\\npm.cmd' run preview -- --host ${previewHost} --port ${previewPort}`,
-    ],
-    { cwd: projectRoot, stdio: "ignore", windowsHide: true },
+    npmCommand,
+    ["run", "preview", "--", "--host", previewHost, "--port", String(previewPort)],
+    {
+      cwd: projectRoot,
+      stdio: "ignore",
+      windowsHide: true,
+      shell: process.platform === "win32",
+    },
   );
 
   try {

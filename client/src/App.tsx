@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FloatingContactButtons from "./components/FloatingContactButtons";
 import { trackVisit } from "./utils/visitTracker";
 import { packagePages } from "./data/packagePages";
 import { servicePages } from "./data/servicePages";
@@ -81,6 +82,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <FloatingContactButtons />
     </div>
   );
 }

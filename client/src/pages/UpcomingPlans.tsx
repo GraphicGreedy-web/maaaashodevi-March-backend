@@ -17,6 +17,11 @@ import AnimatedCard from "../components/AnimatedCard";
 import SEO from "../components/SEO";
 import { getGuideForTourTitle, planningGuides } from "../data/seoLinks";
 import { getPackagePathForTitle, packagePages } from "../data/packagePages";
+import {
+  filterAndRankToursByLocalBusinessQuery,
+  getLocalBusinessSearchTerms,
+  rankTourByLocalBusinessQuery,
+} from "../utils/localBusinessSearch";
 
 const getTourShareSlug = (title: string) =>
   title
@@ -52,6 +57,29 @@ const UpcomingPlans: React.FC = () => {
   const [shareToast, setShareToast] = useState<string | null>(null);
   const [activeSharedTourSlug, setActiveSharedTourSlug] = useState<string | null>(null);
   const tourCardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const shouldSkipSharedScrollRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const navigationEntry = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    const isReloadNavigation = navigationEntry?.type === "reload";
+    const params = new URLSearchParams(location.search);
+    const hasSharedTourParam = Boolean(params.get("tour"));
+
+    if (!isReloadNavigation || !hasSharedTourParam) {
+      return;
+    }
+
+    shouldSkipSharedScrollRef.current = location.search;
+    const previousScrollRestoration = window.history.scrollRestoration;
+
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    window.requestAnimationFrame(() => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    });
+  }, [location.search]);
 
   useEffect(() => {
     let isMounted = true;
@@ -121,11 +149,21 @@ const UpcomingPlans: React.FC = () => {
       setActiveRegion(matchingTour.region);
     }
 
-    if (!matchingTour.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+    if (rankTourByLocalBusinessQuery(matchingTour, searchQuery) <= 0) {
       setSearchQuery("");
     }
 
     setActiveSharedTourSlug(sharedTourSlug);
+
+    if (shouldSkipSharedScrollRef.current === location.search) {
+      const highlightTimer = window.setTimeout(() => {
+        setActiveSharedTourSlug(null);
+      }, 3000);
+
+      return () => {
+        window.clearTimeout(highlightTimer);
+      };
+    }
 
     const scrollTimer = window.setTimeout(() => {
       tourCardRefs.current[sharedTourSlug]?.scrollIntoView({
@@ -146,17 +184,9 @@ const UpcomingPlans: React.FC = () => {
 
   const featuredTrips = allTours.filter((trip) => trip.featured);
 
-  const filteredTrips = allTours.filter((trip) => {
-    const matchesSearch =
-      trip.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      trip.locations.some((loc) =>
-        loc.toLowerCase().includes(searchQuery.toLowerCase()),
-      ) ||
-      trip.state.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesRegion =
-      activeRegion === "all" || trip.region === activeRegion;
-    return matchesSearch && matchesRegion;
-  });
+  const filteredTrips = filterAndRankToursByLocalBusinessQuery(allTours, searchQuery).filter(
+    (trip) => activeRegion === "all" || trip.region === activeRegion,
+  );
 
   const regions = [
     { id: "all", name: "All Packages" },
@@ -247,13 +277,15 @@ const UpcomingPlans: React.FC = () => {
           "maa aasho devi tours",
           "maa aasho devi dharma yatra",
           "upcoming yatra plans from bhopal",
-          "tour agency bhopal",
-          "religious tour packages from bhopal",
-          "religious tour package bhopal",
-          "char dham yatra bhopal",
-          "char dham yatra package from bhopal",
-          "kedarnath tour package bhopal",
-          "book pilgrimage package bhopal",
+          ...getLocalBusinessSearchTerms([
+            "tour agency bhopal",
+            "religious tour packages from bhopal",
+            "religious tour package bhopal",
+            "char dham yatra bhopal",
+            "char dham yatra package from bhopal",
+            "kedarnath tour package bhopal",
+            "book pilgrimage package bhopal",
+          ]),
         ]}
         schema={[
           {

@@ -16,7 +16,7 @@ export interface BlogPostType {
 
 export type BlogPost = BlogPostType;
 
-export const blogPosts: BlogPostType[] = [
+const existingBlogPosts: BlogPostType[] = [
   {
     id: 1,
     title: "How to Choose a Tour Agency in Bhopal for a Peaceful Dharma Yatra",
@@ -767,4 +767,280 @@ export const blogPosts: BlogPostType[] = [
       <p>If you are considering a <strong>Pashupatinath tour package from Bhopal</strong>, explore our <a href="/upcoming-plans">upcoming plans</a>, visit the <a href="/blog">blog</a> for more pilgrimage guides, or <a href="/contact">contact us</a> for support.</p>
     `,
   },
+  {
+    id: 18,
+    title: "Do Dham Yatra Package from Bhopal: Kedarnath and Badrinath Planning Guide",
+    excerpt:
+      "A practical guide for Bhopal families comparing a Do Dham Yatra package, including Kedarnath–Badrinath route pacing, season and booking questions.",
+    image:
+      "https://staticimg.amarujala.com/assets/images/2016/03/13/snowfall-in-kedarnath_1457875309.jpeg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "7 min read",
+    category: "Destinations",
+    slug: "do-dham-yatra-package-from-bhopal",
+    metaTitle:
+      "Do Dham Yatra Package from Bhopal | Kedarnath Badrinath Planning Guide",
+    metaDescription:
+      "Compare a Do Dham Yatra package from Bhopal for Kedarnath and Badrinath. Understand route pacing, suitable travel windows and family booking questions.",
+    keywords: [
+      "do dham yatra package from bhopal",
+      "kedarnath badrinath package from bhopal",
+      "do dham yatra from bhopal",
+      "kedarnath badrinath yatra package",
+      "uttarakhand pilgrimage package from bhopal",
+    ],
+    content: `
+      <h1>Do Dham Yatra Package from Bhopal: Kedarnath and Badrinath Planning Guide</h1>
+      <p>A <strong>Do Dham Yatra package from Bhopal</strong> is a common choice for families who want to visit Kedarnath and Badrinath without taking on the full Char Dham circuit. It is still a Himalayan pilgrimage, so the right pace, weather window, stay plan, and mobility preparation matter more than a rushed itinerary.</p>
+      <h2>What people compare before choosing a Do Dham route</h2>
+      <p>Travellers usually compare duration, the Kedarnath trek or alternate assistance, hotel locations, road travel time, meals, and support for senior citizens. Ask for the day-by-day route in writing. A clear plan helps a family decide whether the journey is comfortable for its age group and fitness level.</p>
+      <h2>Do Dham versus Char Dham</h2>
+      <p>A <strong>Do Dham Yatra from Bhopal</strong> can be a better fit when time is limited or when pilgrims want a more focused route. Those wanting Yamunotri and Gangotri as well should compare our <a href="/char-dham-yatra-from-bhopal">Char Dham Yatra from Bhopal</a> page before deciding.</p>
+      <h2>Questions to ask before booking</h2>
+      <p>Confirm the departure point, total nights, accommodation standard, transport type, meal plan, cancellation terms, and what happens if weather or local restrictions change the route. For a <strong>Kedarnath Badrinath package from Bhopal</strong>, discuss medical and mobility needs before paying an advance.</p>
+      <p>For current availability and a route suited to your group, see <a href="/upcoming-plans">upcoming pilgrimage packages</a> or <a href="/contact">contact the team</a>.</p>
+    `,
+  },
+  {
+    id: 19,
+    title: "Char Dham Yatra 2026 from Bhopal: Registration, Route and Package Checklist",
+    excerpt:
+      "A current planning checklist for Bhopal pilgrims researching Char Dham Yatra 2026, including registration, route details, health preparation and booking questions.",
+    image:
+      "https://sanjeevnitoday.com/wp-content/uploads/2024/05/Char-Dham-Yatra-Tour-Package.jpg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "8 min read",
+    category: "Travel Tips",
+    slug: "char-dham-yatra-2026-from-bhopal",
+    metaTitle:
+      "Char Dham Yatra 2026 from Bhopal | Registration and Route Checklist",
+    metaDescription:
+      "Planning Char Dham Yatra 2026 from Bhopal? Use this checklist for registration, route planning, senior-citizen preparation and package comparison.",
+    keywords: [
+      "char dham yatra 2026 from bhopal",
+      "char dham yatra registration 2026",
+      "char dham yatra package 2026",
+      "char dham itinerary from bhopal",
+      "char dham yatra package from bhopal",
+    ],
+    content: `
+      <h1>Char Dham Yatra 2026 from Bhopal: Registration, Route and Package Checklist</h1>
+      <p>People searching for <strong>Char Dham Yatra 2026 from Bhopal</strong> are usually comparing more than dates. They want to know the route, registration requirements, how the journey works for elders, and what a package actually includes. Treat every operator’s current information as something to verify before you book, because mountain travel rules and access can change.</p>
+      <h2>Start with official registration and travel documents</h2>
+      <p>Before confirming a <strong>Char Dham Yatra package 2026</strong>, check the current official Uttarakhand requirements, identity-document needs, and any health or registration instructions. Keep digital and printed copies of the booking, identification, emergency contacts, and travel insurance details where applicable.</p>
+      <h2>Review the full route, not only the headline price</h2>
+      <p>A typical circuit covers Yamunotri, Gangotri, Kedarnath, and Badrinath. Ask where the group joins from Bhopal, how transfers are handled, the daily driving time, hotel areas, meal plan, and how weather disruptions are managed. This is more useful than comparing a price without understanding the itinerary.</p>
+      <h2>Plan realistically for senior citizens</h2>
+      <p>Families travelling with older pilgrims should talk openly about altitude, walking, rest days, medication, and whether a shorter Do Dham plan is more suitable. Read our <a href="/blog/char-dham-yatra-cost-from-bhopal">Char Dham cost guide</a> and check <a href="/char-dham-yatra-from-bhopal">Char Dham package details</a> before enquiring.</p>
+      <p>For the latest departure availability, use <a href="/upcoming-plans">upcoming plans</a> or <a href="/contact">request a current itinerary</a>.</p>
+    `,
+  },
+  {
+    id: 20,
+    title: "Kedarnath Yatra Package Price from Bhopal: What to Compare Before Booking",
+    excerpt:
+      "Understand the practical factors behind a Kedarnath Yatra package price from Bhopal, from transport and stays to trek support and weather contingencies.",
+    image:
+      "https://staticimg.amarujala.com/assets/images/2016/03/13/snowfall-in-kedarnath_1457875309.jpeg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "7 min read",
+    category: "Travel Tips",
+    slug: "kedarnath-yatra-package-price-from-bhopal",
+    metaTitle:
+      "Kedarnath Yatra Package Price from Bhopal | Booking Comparison Guide",
+    metaDescription:
+      "Searching for Kedarnath Yatra package price from Bhopal? Compare transport, accommodation, trek support, exclusions and weather-related planning before booking.",
+    keywords: [
+      "kedarnath yatra package price from bhopal",
+      "kedarnath tour package cost from bhopal",
+      "kedarnath package from bhopal",
+      "kedarnath yatra package 2026",
+      "kedarnath tour package from bhopal",
+    ],
+    content: `
+      <h1>Kedarnath Yatra Package Price from Bhopal: What to Compare Before Booking</h1>
+      <p>A search for <strong>Kedarnath Yatra package price from Bhopal</strong> should lead to a detailed comparison, not a quick decision on the lowest figure. Kedarnath travel involves a long approach route, accommodation, local transfers, meals, and individual requirements around the trek or alternate assistance.</p>
+      <h2>Ask what is included in the quoted price</h2>
+      <p>Request a written list of transport, hotel nights, meals, guide or coordinator support, and transfer points. Then ask separately about costs that may not be included, such as pony, palki, porter, helicopter, personal medical needs, special darshan, or expenses caused by weather and road restrictions.</p>
+      <h2>Why the cheapest package is not always the best fit</h2>
+      <p>A very low quote can leave important details unclear. Compare the hotel area, number of travel hours per day, group size, cancellation terms, and communication support. Families and first-time pilgrims should prioritise a realistic pace and clear inclusions.</p>
+      <h2>Choose the right route for the group</h2>
+      <p>See our <a href="/kedarnath-tour-package-from-bhopal">Kedarnath package page</a> for a package overview, or compare a <a href="/blog/do-dham-yatra-package-from-bhopal">Do Dham route</a> if Badrinath is also part of your plan. For an exact, current quote, <a href="/contact">contact the team</a> with your dates and group requirements.</p>
+    `,
+  },
+  {
+    id: 21,
+    title: "Ujjain Omkareshwar Tour Package from Bhopal: Jyotirlinga Route Planning",
+    excerpt:
+      "A useful planning guide for devotees comparing an Ujjain Omkareshwar tour package from Bhopal for Mahakaleshwar darshan and a two-Jyotirlinga route.",
+    image:
+      "https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2022/10/13102255/Ujjain.jpg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "6 min read",
+    category: "Destinations",
+    slug: "ujjain-omkareshwar-tour-package-from-bhopal",
+    metaTitle:
+      "Ujjain Omkareshwar Tour Package from Bhopal | Jyotirlinga Route Guide",
+    metaDescription:
+      "Planning an Ujjain Omkareshwar tour package from Bhopal? Compare Mahakaleshwar darshan, route timing, family comfort and booking questions.",
+    keywords: [
+      "ujjain omkareshwar tour package from bhopal",
+      "mahakaleshwar omkareshwar package from bhopal",
+      "two jyotirlinga tour package from bhopal",
+      "ujjain mahakal darshan package from bhopal",
+      "ujjain tour package from bhopal",
+    ],
+    content: `
+      <h1>Ujjain Omkareshwar Tour Package from Bhopal: Jyotirlinga Route Planning</h1>
+      <p>An <strong>Ujjain Omkareshwar tour package from Bhopal</strong> is a popular short pilgrimage idea for devotees who want to combine Mahakaleshwar and Omkareshwar in one route. It is a practical option, but temple timing, crowd periods, travel pace, and stay location still need careful planning.</p>
+      <h2>Why people choose this two-Jyotirlinga route</h2>
+      <p>Ujjain offers Mahakaleshwar darshan, while Omkareshwar adds a second sacred stop on the Narmada. Families comparing a <strong>two Jyotirlinga tour package from Bhopal</strong> often want a manageable schedule that does not compress temple visits into an exhausting day.</p>
+      <h2>Plan darshan timing before transport</h2>
+      <p>Ask how the itinerary accounts for temple-entry procedures, aarti or special-darshan options, local queues, and meal breaks. These details matter especially for elders and children. Never assume a special darshan or puja is part of a standard package unless it is written in the confirmation.</p>
+      <h2>Compare it with a Ujjain-only trip</h2>
+      <p>A short <a href="/ujjain-tour-package-from-bhopal">Ujjain tour package from Bhopal</a> can suit travellers with limited time, while the combined route gives devotees more time and a broader spiritual itinerary. View <a href="/upcoming-plans">current packages</a> or <a href="/contact">ask about a custom family plan</a>.</p>
+    `,
+  },
+  {
+    id: 22,
+    title: "Mathura Vrindavan Tour Package from Bhopal: Family and Temple Travel Guide",
+    excerpt:
+      "A planning guide for families researching a Mathura Vrindavan tour package from Bhopal, including temple timing, group travel and route questions.",
+    image:
+      "https://www.poojn.in/wp-content/uploads/2025/02/Kalyana-Venkateswara-Temple-Srinivasa-Mangapuram-Your-Complete-Guide.jpeg.jpg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "6 min read",
+    category: "Destinations",
+    slug: "mathura-vrindavan-tour-package-from-bhopal",
+    metaTitle:
+      "Mathura Vrindavan Tour Package from Bhopal | Family Temple Travel Guide",
+    metaDescription:
+      "Explore a Mathura Vrindavan tour package from Bhopal with temple-travel planning, family comfort, group coordination and booking questions.",
+    keywords: [
+      "mathura vrindavan tour package from bhopal",
+      "mathura vrindavan package from bhopal",
+      "vrindavan mathura tour from bhopal",
+      "banke bihari darshan package from bhopal",
+      "vrindavan tour package from bhopal",
+    ],
+    content: `
+      <h1>Mathura Vrindavan Tour Package from Bhopal: Family and Temple Travel Guide</h1>
+      <p>A <strong>Mathura Vrindavan tour package from Bhopal</strong> appeals to devotees and families who want to visit Krishna temples with transport and stay details settled in advance. Good planning is useful during busy festival dates and weekends, when local movement and darshan queues can change the day’s rhythm.</p>
+      <h2>Make the temple plan realistic</h2>
+      <p>Ask which temples are included, how much time is planned for each, and whether the itinerary allows rest, meals, and local transfers. Banke Bihari Temple, Prem Mandir, and Mathura stops may each need different timings, so a loose “sightseeing” promise is not enough.</p>
+      <h2>Family and group travel questions</h2>
+      <p>When comparing a <strong>Mathura Vrindavan package from Bhopal</strong>, confirm the travel mode, room-sharing arrangement, pickup point, and whether the operator can adapt the pace for elders or children. Festival travel should be booked early and confirmed with a written itinerary.</p>
+      <h2>Start with the existing Vrindavan route</h2>
+      <p>Our <a href="/vrindavan-tour-package-from-bhopal">Vrindavan package page</a> explains the current route focus. For a tailored Mathura–Vrindavan plan, see <a href="/upcoming-plans">upcoming plans</a> or <a href="/contact">contact the team</a> with your preferred dates.</p>
+    `,
+  },
+  {
+    id: 23,
+    title: "Badrinath Kedarnath Package from Bhopal: Route, Weather and Family Checklist",
+    excerpt:
+      "A detailed checklist for pilgrims comparing a Badrinath Kedarnath package from Bhopal, with route, health, weather and booking considerations.",
+    image:
+      "https://sanjeevnitoday.com/wp-content/uploads/2024/05/Char-Dham-Yatra-Tour-Package.jpg",
+    author: "Neha Gupta",
+    date: "September 11, 2026",
+    readTime: "7 min read",
+    category: "Travel Tips",
+    slug: "badrinath-kedarnath-package-from-bhopal",
+    metaTitle:
+      "Badrinath Kedarnath Package from Bhopal | Route and Family Checklist",
+    metaDescription:
+      "Compare a Badrinath Kedarnath package from Bhopal with a practical checklist for travel route, weather readiness, health needs and booking clarity.",
+    keywords: [
+      "badrinath kedarnath package from bhopal",
+      "kedarnath badrinath yatra from bhopal",
+      "badrinath kedarnath tour package",
+      "do dham yatra package from bhopal",
+      "badrinath tour package from bhopal",
+    ],
+    content: `
+      <h1>Badrinath Kedarnath Package from Bhopal: Route, Weather and Family Checklist</h1>
+      <p>A <strong>Badrinath Kedarnath package from Bhopal</strong> is another name travellers use for a Do Dham pilgrimage. The journey needs more preparation than a city break: mountain weather, road conditions, the Kedarnath ascent, and family health requirements all affect the right itinerary.</p>
+      <h2>Check the route and daily travel time</h2>
+      <p>Before booking, ask where the Bhopal departure connects to the Himalayan route, how many hours are planned each day, and where overnight stays are located. A sensible itinerary gives pilgrims time to rest rather than treating every day as a transfer day.</p>
+      <h2>Prepare for weather and mobility needs</h2>
+      <p>Carry suitable layers, rain protection, prescribed medicines, and footwear appropriate for changing conditions. Travellers who may need pony, palki, porter, or helicopter assistance should discuss availability and separate charges early; no option should be assumed to be included.</p>
+      <h2>Book with clear written inclusions</h2>
+      <p>For a <strong>Kedarnath Badrinath yatra from Bhopal</strong>, verify the stay plan, meals, local transfers, exclusions, cancellation policy, and assistance during disruptions. You can also review our <a href="/blog/do-dham-yatra-package-from-bhopal">Do Dham planning guide</a> and <a href="/blog/badrinath-tour-package-from-bhopal">Badrinath guide</a> before requesting current availability.</p>
+    `,
+  },
+];
+
+type SeoGuideInput = {
+  id: number;
+  title: string;
+  keyword: string;
+  slug: string;
+  route?: string;
+  relatedRoute: string;
+  relatedLabel: string;
+  highlights: string;
+};
+
+const SEO_GUIDE_IMAGE =
+  "https://sanjeevnitoday.com/wp-content/uploads/2024/05/Char-Dham-Yatra-Tour-Package.jpg";
+
+const createSeoGuide = ({
+  id,
+  title,
+  keyword,
+  slug,
+  route,
+  relatedRoute,
+  relatedLabel,
+  highlights,
+}: SeoGuideInput): BlogPostType => ({
+  id,
+  title,
+  excerpt: `A practical planning guide for travellers researching ${keyword} with route, stay, comfort and booking questions.`,
+  image: SEO_GUIDE_IMAGE,
+  author: "Neha Gupta",
+  date: "September 11, 2026",
+  readTime: "6 min read",
+  category: "Destinations",
+  slug,
+  metaTitle: `${title} | Pilgrimage Planning Guide`,
+  metaDescription: `Planning ${keyword}? Compare route planning, inclusions, family comfort and current booking availability before you travel.`,
+  keywords: [keyword, "religious tour packages from bhopal", "tour operator in bhopal", "family pilgrimage tours"],
+  content: `
+    <h1>${title}</h1>
+    <p>Travellers searching for <strong>${keyword}</strong> usually need clear, practical information before they enquire: how the route works, how many days it may need, what is included, and whether it suits their family. ${route ? `This guide focuses on ${route}.` : ""} This guide helps you make that comparison before committing to a travel plan.</p>
+    <h2>Plan the route around darshan and comfort</h2>
+    <p>${highlights} Ask for a written day-wise itinerary, hotel locations, transport details, meal plan, and a clear list of exclusions. Temple timing, local queues, weather, and group pace can change the experience significantly.</p>
+    <h2>Questions to ask before booking</h2>
+    <p>Confirm departure and return arrangements from Bhopal, the room-sharing plan, cancellation terms, medical or mobility support, and any separate charges for special darshan, local transfers, porters, or personal expenses. Never assume an item is included unless it appears in the confirmed quotation.</p>
+    <h2>Check current availability</h2>
+    <p>For a current itinerary or a family-specific discussion, explore <a href="/upcoming-plans">upcoming plans</a> or <a href="/contact">contact Maa Aasho Devi Tours</a>. You can also review our <a href="${relatedRoute}">${relatedLabel}</a> before deciding.</p>
+  `,
+});
+
+const seoDestinationGuides: BlogPostType[] = [
+  createSeoGuide({ id: 24, title: "Ayodhya Tour Package from Bhopal: Ram Mandir Darshan Planning", keyword: "ayodhya tour package from bhopal", slug: "ayodhya-tour-package-from-bhopal", relatedRoute: "/blog/mathura-vrindavan-tour-package-from-bhopal", relatedLabel: "Mathura Vrindavan travel guide", highlights: "An Ayodhya journey may include Ram Mandir darshan, Hanuman Garhi, Kanak Bhawan, and Sarayu-side visits, depending on the confirmed route." }),
+  createSeoGuide({ id: 25, title: "Ayodhya Varanasi Prayagraj Tour Package from Bhopal", keyword: "ayodhya varanasi prayagraj tour package from bhopal", slug: "ayodhya-varanasi-prayagraj-tour-package-from-bhopal", route: "Ayodhya, Varanasi and Prayagraj", relatedRoute: "/blog/ayodhya-tour-package-from-bhopal", relatedLabel: "Ayodhya planning guide", highlights: "This multi-city circuit can include Ram Mandir, Kashi Vishwanath, Ganga Aarti, and Triveni Sangam; it needs sensible travel time between each city." }),
+  createSeoGuide({ id: 26, title: "Varanasi Tour Package from Bhopal: Kashi Darshan Planning", keyword: "varanasi tour package from bhopal", slug: "varanasi-tour-package-from-bhopal", route: "Varanasi", relatedRoute: "/blog/ayodhya-varanasi-prayagraj-tour-package-from-bhopal", relatedLabel: "Ayodhya Varanasi Prayagraj guide", highlights: "Varanasi plans commonly centre on Kashi Vishwanath, Ganga Aarti, Sankat Mochan, and local ghats, with enough time for darshan and local movement." }),
+  createSeoGuide({ id: 27, title: "Kashi Vishwanath Tour Package from Bhopal: Darshan and Stay Guide", keyword: "kashi vishwanath tour package from bhopal", slug: "kashi-vishwanath-tour-package-from-bhopal", route: "Kashi Vishwanath, Varanasi", relatedRoute: "/blog/varanasi-tour-package-from-bhopal", relatedLabel: "Varanasi travel guide", highlights: "A Kashi-focused plan should account for temple-entry rules, crowd periods, Ganga Aarti timing, and stay location rather than promising a rushed visit." }),
+  createSeoGuide({ id: 28, title: "Vaishno Devi Tour Package from Bhopal: Katra Yatra Checklist", keyword: "vaishno devi tour package from bhopal", slug: "vaishno-devi-tour-package-from-bhopal", route: "Katra and Vaishno Devi", relatedRoute: "/blog/char-dham-yatra-2026-from-bhopal", relatedLabel: "Char Dham planning checklist", highlights: "A Vaishno Devi plan must consider Katra transfers, registration or access requirements, walking distance, alternate support options, and return timing." }),
+  createSeoGuide({ id: 29, title: "Jagannath Puri Tour Package from Bhopal: Darshan Route Guide", keyword: "jagannath puri tour package from bhopal", slug: "jagannath-puri-tour-package-from-bhopal", route: "Puri", relatedRoute: "/blog/ujjain-omkareshwar-tour-package-from-bhopal", relatedLabel: "two-Jyotirlinga route guide", highlights: "Puri routes can combine Jagannath Temple with local travel in Odisha; verify temple-access rules and whether Konark or Bhubaneswar are part of the confirmed plan." }),
+  createSeoGuide({ id: 30, title: "Dwarka Somnath Tour Package from Bhopal: Gujarat Temple Circuit", keyword: "dwarka somnath tour package from bhopal", slug: "dwarka-somnath-tour-package-from-bhopal", route: "Dwarka and Somnath", relatedRoute: "/blog/badrinath-kedarnath-package-from-bhopal", relatedLabel: "Himalayan pilgrimage checklist", highlights: "A Gujarat temple circuit may include Dwarkadhish, Nageshwar, Somnath, and nearby stops; compare travel time and overnight locations carefully." }),
+  createSeoGuide({ id: 31, title: "Rameshwaram Tour Package from Bhopal: South India Pilgrimage Planning", keyword: "rameshwaram tour package from bhopal", slug: "rameshwaram-tour-package-from-bhopal", route: "Rameshwaram", relatedRoute: "/blog/dwarka-somnath-tour-package-from-bhopal", relatedLabel: "Dwarka Somnath guide", highlights: "A Rameshwaram itinerary needs realistic rail or flight connections from Bhopal, temple timing, and enough rest around longer South India transfers." }),
+  createSeoGuide({ id: 32, title: "Muktinath Yatra Package from Bhopal: Nepal Pilgrimage Checklist", keyword: "muktinath yatra package from bhopal", slug: "muktinath-yatra-package-from-bhopal", route: "Muktinath, Nepal", relatedRoute: "/pashupatinath-tour-package-from-bhopal", relatedLabel: "Pashupatinath package details", highlights: "Muktinath travel involves a longer Nepal route and may be weather-sensitive, so identity requirements, transport segments, altitude, and contingency arrangements need early discussion." }),
+  createSeoGuide({ id: 33, title: "Panch Jyotirlinga Yatra from Bhopal: Route Planning Guide", keyword: "panch jyotirlinga yatra from bhopal", slug: "panch-jyotirlinga-yatra-from-bhopal", route: "Jyotirlinga circuit", relatedRoute: "/blog/ujjain-omkareshwar-tour-package-from-bhopal", relatedLabel: "Ujjain Omkareshwar guide", highlights: "A multi-temple Jyotirlinga circuit should be planned by exact destinations and dates because each temple location, transport leg, and darshan arrangement can differ." }),
+  createSeoGuide({ id: 34, title: "Ujjain Omkareshwar Indore Tour Package from Bhopal", keyword: "ujjain omkareshwar indore tour package from bhopal", slug: "ujjain-omkareshwar-indore-tour-package-from-bhopal", route: "Ujjain, Omkareshwar and Indore", relatedRoute: "/ujjain-tour-package-from-bhopal", relatedLabel: "Ujjain package details", highlights: "This Madhya Pradesh circuit can combine Mahakaleshwar, Omkareshwar, and Indore; keep temple timings and road travel in the itinerary rather than treating it as a same-day rush." }),
+  createSeoGuide({ id: 35, title: "Mahakaleshwar Bhasma Aarti Package from Bhopal: Planning Guide", keyword: "mahakaleshwar bhasma aarti package from bhopal", slug: "mahakaleshwar-bhasma-aarti-package-from-bhopal", route: "Mahakaleshwar, Ujjain", relatedRoute: "/ujjain-tour-package-from-bhopal", relatedLabel: "Ujjain package details", highlights: "Bhasma Aarti arrangements are subject to the temple’s current rules and availability, so confirm official procedures separately and do not rely on an unverified promise of access." }),
+  createSeoGuide({ id: 36, title: "Chitrakoot Tour Package from Bhopal: Family Pilgrimage Guide", keyword: "chitrakoot tour package from bhopal", slug: "chitrakoot-tour-package-from-bhopal", route: "Chitrakoot", relatedRoute: "/blog/ayodhya-tour-package-from-bhopal", relatedLabel: "Ayodhya planning guide", highlights: "Chitrakoot planning may include Ramghat, Kamadgiri, and nearby sacred sites; ask how local movement and rest stops fit your group’s needs." }),
+  createSeoGuide({ id: 37, title: "Amarkantak Tour Package from Bhopal: Narmada Pilgrimage Guide", keyword: "amarkantak tour package from bhopal", slug: "amarkantak-tour-package-from-bhopal", route: "Amarkantak", relatedRoute: "/blog/ujjain-omkareshwar-tour-package-from-bhopal", relatedLabel: "Madhya Pradesh Jyotirlinga guide", highlights: "An Amarkantak route can focus on Narmada Udgam, temples, and nearby natural sites; a clear transport and stay plan keeps the journey comfortable for families." }),
+];
+
+export const blogPosts: BlogPostType[] = [
+  ...existingBlogPosts,
+  ...seoDestinationGuides,
 ];

@@ -16,6 +16,10 @@ import {
 import PageTransition from "../components/PageTransition";
 import SEO from "../components/SEO";
 import { companyProfile } from "../data/companyProfile";
+import {
+  getLocalBusinessSearchTerms,
+  getLocalBusinessServiceTypes,
+} from "../utils/localBusinessSearch";
 
 const destinationGroups = [
   {
@@ -84,11 +88,13 @@ const About: React.FC = () => {
           "maa aasho devi tours",
           "maa aasho devi dharma yatra",
           "about maa aasho devi tours",
-          "tour agency bhopal",
-          "lal ghati bhopal travel agency",
-          "religious tour package bhopal",
-          "char dham yatra bhopal",
-          "kedarnath tour package bhopal",
+          ...getLocalBusinessSearchTerms([
+            "tour agency bhopal",
+            "lal ghati bhopal travel agency",
+            "religious tour package bhopal",
+            "char dham yatra bhopal",
+            "kedarnath tour package bhopal",
+          ]),
         ]}
         schema={[
           {
@@ -118,6 +124,11 @@ const About: React.FC = () => {
               name: operator.name,
               jobTitle: operator.role,
             },
+            serviceType: getLocalBusinessServiceTypes(),
+            knowsAbout: getLocalBusinessSearchTerms([
+              "lal ghati bhopal travel agency",
+              "maa aasho devi tours",
+            ]),
           },
         ]}
       />

@@ -5,6 +5,10 @@ import PageTransition from "../components/PageTransition";
 import SEO from "../components/SEO";
 import { companyProfile } from "../data/companyProfile";
 import { getServicePackages, getServicePage } from "../data/servicePages";
+import {
+  getLocalBusinessSearchTerms,
+  getLocalBusinessServiceTypes,
+} from "../utils/localBusinessSearch";
 
 interface ServicePageProps {
   serviceSlug: string;
@@ -27,11 +31,15 @@ const ServicePage: React.FC<ServicePageProps> = ({ serviceSlug }) => {
         description={serviceData.metaDescription}
         path={location.pathname}
         keywords={[
-          serviceData.title.toLowerCase(),
-          "tour operator in bhopal",
-          "travel agency in bhopal",
-          "religious tour packages from bhopal",
-          "family pilgrimage tours",
+          ...getLocalBusinessSearchTerms([
+            serviceData.title.toLowerCase(),
+            ...serviceData.serviceHighlights,
+            ...serviceData.coveragePoints,
+            "tour operator in bhopal",
+            "travel agency in bhopal",
+            "religious tour packages from bhopal",
+            "family pilgrimage tours",
+          ]),
         ]}
         schema={[
           {
@@ -50,7 +58,12 @@ const ServicePage: React.FC<ServicePageProps> = ({ serviceSlug }) => {
             telephone: companyProfile.phone,
             email: companyProfile.email,
             url: `https://maaaashodevidharmayatra.in${location.pathname}`,
-            serviceType: serviceData.title,
+            serviceType: getLocalBusinessServiceTypes([serviceData.title]),
+            knowsAbout: getLocalBusinessSearchTerms([
+              serviceData.title,
+              ...serviceData.coveragePoints,
+              ...serviceData.idealFor,
+            ]),
           },
           {
             "@context": "https://schema.org",

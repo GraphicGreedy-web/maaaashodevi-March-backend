@@ -11,6 +11,10 @@ import SEO from "../components/SEO";
 import { getPackagePathForTitle } from "../data/packagePages";
 import { servicePages } from "../data/servicePages";
 import { companyProfile } from "../data/companyProfile";
+import {
+  getLocalBusinessSearchTerms,
+  getLocalBusinessServiceTypes,
+} from "../utils/localBusinessSearch";
 const Home: React.FC = () => {
   const whyChooseUsRef = useRef<HTMLDivElement>(null);
   const ratingFormRef = useRef<HTMLDivElement>(null);
@@ -217,23 +221,25 @@ const Home: React.FC = () => {
           "maa aasho devi dharma yatra",
           "maa aasho devi tours",
           "maa aasho devi bhopal",
-          "tour agency bhopal",
-          "travel agency bhopal",
-          "travel agency in bhopal",
-          "tour operator bhopal",
-          "char dham yatra bhopal",
-          "char dham yatra from bhopal",
-          "char dham yatra package from bhopal",
-          "kedarnath tour package bhopal",
-          "kedarnath tour package from bhopal",
-          "religious tour package bhopal",
-          "religious tour packages from bhopal",
-          "ujjain tour package from bhopal",
-          "pashupatinath tour package from bhopal",
-          "pilgrimage tour operator bhopal",
-          "spiritual tour operator bhopal",
-          "vrindavan tour package from bhopal",
-          "family pilgrimage tours",
+          ...getLocalBusinessSearchTerms([
+            "tour agency bhopal",
+            "travel agency bhopal",
+            "travel agency in bhopal",
+            "tour operator bhopal",
+            "char dham yatra bhopal",
+            "char dham yatra from bhopal",
+            "char dham yatra package from bhopal",
+            "kedarnath tour package bhopal",
+            "kedarnath tour package from bhopal",
+            "religious tour package bhopal",
+            "religious tour packages from bhopal",
+            "ujjain tour package from bhopal",
+            "pashupatinath tour package from bhopal",
+            "pilgrimage tour operator bhopal",
+            "spiritual tour operator bhopal",
+            "vrindavan tour package from bhopal",
+            "family pilgrimage tours",
+          ]),
         ]}
         schema={[
           {
@@ -279,14 +285,12 @@ const Home: React.FC = () => {
               "https://www.facebook.com/share/p/1HG3z2Q8AX/",
               "https://wa.me/message/AGFJTGPLJOE7N1",
             ],
-            serviceType: [
-              "Tour Agency",
-              "Travel Agency",
+            serviceType: getLocalBusinessServiceTypes([
               "Pilgrimage Tour Packages",
               "Char Dham Yatra Packages",
               "Religious Tour Packages",
-            ],
-            knowsAbout: [
+            ]),
+            knowsAbout: getLocalBusinessSearchTerms([
               "Maa Aasho Devi Dharma Yatra",
               "Maa Aasho Devi Tours",
               "Maa Aasho Devi Bhopal",
@@ -303,7 +307,7 @@ const Home: React.FC = () => {
               "Pashupatinath Tour Package from Bhopal",
               "Vrindavan Tour Package from Bhopal",
               "Pilgrimage Tours",
-            ],
+            ]),
           },
           {
             "@context": "https://schema.org",
@@ -580,7 +584,7 @@ const Home: React.FC = () => {
               >
                 Bhopal Service <span className="text-primary">Coverage</span>
               </motion.h2>
-              <motion.p
+              {/* <motion.p
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -591,7 +595,7 @@ const Home: React.FC = () => {
                 These pages help travellers who search for a tour agency, travel agency,
                 family operator, or religious package support in Bhopal and then move into
                 higher-intent routes like Char Dham, Kedarnath, Ujjain, and Pashupatinath.
-              </motion.p>
+              </motion.p> */}
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
