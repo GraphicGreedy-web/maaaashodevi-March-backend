@@ -17,16 +17,6 @@ export const contactSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    contactMethod: {
-        type: String,
-        enum: ["Email", "Phone", "WhatsApp"],
-        default: "Email",
-    },
-    subject: {
-        type: String,
-        required: true,
-        trim: true,
-    },
     tour: {
         type: String,
         default: "",

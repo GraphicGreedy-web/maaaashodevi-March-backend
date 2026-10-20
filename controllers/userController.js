@@ -6,15 +6,12 @@ import {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[0-9+\-\s()]{7,20}$/;
-const CONTACT_METHODS = new Set(["Email", "Phone", "WhatsApp"]);
 
 const normalizeContactPayload = (body = {}) => {
   const payload = {
     name: body.name?.trim() ?? "",
     email: body.email?.trim().toLowerCase() ?? "",
     phone: body.phone?.trim() ?? "",
-    contactMethod: body.contactMethod?.trim() ?? "Email",
-    subject: body.subject?.trim() ?? "",
     tour: body.tour?.trim() ?? "",
     message: body.message?.trim() ?? "",
   };
@@ -33,14 +30,6 @@ const validateContactPayload = (payload) => {
 
   if (!payload.phone || !PHONE_REGEX.test(payload.phone)) {
     return "Please enter a valid phone number.";
-  }
-
-  if (!CONTACT_METHODS.has(payload.contactMethod)) {
-    return "Please select a valid contact method.";
-  }
-
-  if (!payload.subject || payload.subject.length < 3) {
-    return "Please enter a valid subject.";
   }
 
   if (payload.tour && payload.tour.length > 120) {
@@ -75,16 +64,20 @@ export const createContact = async (req, res) => {
     console.log("[contact] saving to MongoDB");
     const savedContact = await contact.create(payload);
     console.log("[contact] MongoDB save success:", savedContact._id?.toString());
-    console.log("[contact] queueing email send");
-    await enqueueContactEmail(savedContact._id);
-
     console.log("[contact] returning success response");
-    return res.status(201).json({
+    res.status(201).json({
       success: true,
       message: "Contact form submitted successfully. Email delivery is being processed.",
       contactId: savedContact._id,
       emailStatus: "queued",
     });
+
+    // Email must never delay the browser response. The worker picks up queued
+    // contacts even if this immediate scheduling attempt fails.
+    enqueueContactEmail(savedContact._id).catch((error) => {
+      console.error("[contact] email queueing failed:", error.message);
+    });
+    return;
   } catch (error) {
     console.error("[contact] contact save failed:", error.message);
     return res.status(500).json({
