@@ -41,7 +41,7 @@ const upcomingTrips = [
         order: 3,
         title: "Dakshin Yatra | Jagannath Puri",
         image:
-            "https://www.poojn.in/wp-content/uploads/2025/02/Kalyana-Venkateswara-Temple-Srinivasa-Mangapuram-Your-Complete-Guide.jpeg.jpg",
+            "https://res.cloudinary.com/dw7elrwuy/image/upload/v1792483594/c6a860db0964817d9ef0.jpg",
         startDate: "1 - 11 July 2026",
         duration: "8 Night - 9 Days",
         price: 39999,
@@ -58,7 +58,7 @@ const upcomingTrips = [
         order: 4,
         title: "Braj Yatra",
         image:
-            "https://3.bp.blogspot.com/-Ncy2FYL5BgU/UBfCjjWnmsI/AAAAAAAAAp8/bv70wDLPSok/s1600/Shriji+Temple+-Laadli+Sarkar+Mahal-+Radha+Rani+Mandir1st.JPG",
+            "https://res.cloudinary.com/dw7elrwuy/image/upload/v1792483612/c85c5f701d58a0ad8bca.jpg",
         startDate: "25 Feb - 1 March 2026",
         endDate: "September 9, 2025",
         duration: "4 Nights - 5 Days",
@@ -77,7 +77,7 @@ const upcomingTrips = [
         order: 5,
         title: "Ujjain Mahakaleshwar",
         image:
-            "https://media.easemytrip.com/media/Blog/India/638791301081070175/638791301081070175odQaJ5.png",
+            "https://res.cloudinary.com/dw7elrwuy/image/upload/v1792483613/193559026410facef0a6.png",
         startDate: "1 Feb 2026",
         endDate: "December 9, 2025",
         duration: "1 Days",
@@ -95,7 +95,7 @@ const upcomingTrips = [
         order: 6,
         title: "Nepal",
         image:
-            "https://www.thestatesman.com/wp-content/uploads/2023/06/ajeet-manandhar-WUxvx42rHrk-unsplash.jpg",
+            "https://res.cloudinary.com/dw7elrwuy/image/upload/v1792483593/8ec73568521ff1c7c39a.jpg",
         startDate: "1 Aug - 11 Aug 2026",
         endDate: "December 9, 2025",
         duration: "10 Nights 11 Days",
